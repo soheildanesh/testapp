@@ -1,0 +1,29 @@
+<%#= @items.to_a %>
+<%if @showBaseLineTags %>
+	<%=link_to 'show alchemy tags', action: "showAlchemyTags", id:"dummy"%><br>
+<% else %>
+	<%=link_to 'show baseline tags', action: "index"%><br>
+<% end %>
+
+<% for item in @items %>
+	<%= item['_id']%>
+	<br><%= "#{item['title']}" %>
+	<br><%= "#{item['description']}" %>
+	
+	tags:
+	
+	<%if !@showBaseLineTags%>
+		<br><br>
+		<% for tag in item['alchemyWords']%>
+			<%= tag %>,
+		<% end %>
+	<%else%>
+		<br><br>
+		<% for tag in item['titleWords']%>
+			<%= tag %>,
+		<% end %>
+	<% end %>
+	
+	<br><br><br><br>
+	
+<% end %>
